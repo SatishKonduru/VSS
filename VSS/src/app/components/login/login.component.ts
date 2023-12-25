@@ -18,7 +18,7 @@ export class LoginComponent  implements OnInit{
     })
   }
   userLogin(){
-    this._router.navigate(['/admin/dashboard'])
+    this._router.navigate(['/vss/dashboard'])
      console.log('User Login Details: ', this.loginForm.value)
    
    }

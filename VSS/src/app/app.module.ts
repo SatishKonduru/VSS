@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { VssModule } from './modules/vss/vss.module';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -33,13 +35,15 @@ const ngxUiLoaderConfig : NgxUiLoaderConfig = {
     PageNotFoundComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    VssModule
   ],
   providers: [
     provideClientHydration()

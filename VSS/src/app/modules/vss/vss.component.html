@@ -1,0 +1,46 @@
+
+<header
+  class="bg-white text-orange-500 p-4 flex items-center justify-between sticky top-0 myHeader z-10"
+>
+  <!-- Left side: Logo -->
+  <div class="flex items-center">
+    <button mat-icon-button (click)="collapsed.set(!collapsed())">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img
+      src="../../../assets/img/LOGO.png"
+      alt="Logo"
+      class="h-10 w-18 mr-2"
+    />
+  </div>
+
+  <!-- Center: Navigation -->
+  <nav class="hidden md:flex items-center space-x-4">
+    <a [routerLink]="'/admin/home'" class="no-underline hover:border-b-4 text-orange-500  hover:border-orange-500 transition duration-300">Home</a>
+    <a routerLink="/admin/rooms" class="no-underline hover:border-b-4 text-orange-500  hover:border-orange-500 transition duration-300">Rooms</a>
+    <a routerLink="/admin/reviews" class="no-underline hover:border-b-4 text-orange-500  hover:border-orange-500 transition duration-300">Reviews</a>
+  </nav>
+
+  <!-- Right side: User buttons -->
+  <div class="flex items-center space-x-4">
+       <img type="button" src="../../../../assets/img/Satish.jpeg" class="w-12 h-12 rounded-full border-2  border-orange-500 hover:cursor-pointer"  [matMenuTriggerFor]="menu">
+     </div>
+</header>
+
+
+<!-- user action menu -->
+<mat-menu #menu="matMenu">
+  <button mat-menu-item class="menu-item"><i class="fa fa-user mr-3"></i><span>Profile</span></button>
+  <button mat-menu-item class="menu-item" (click)="onExit()"><i class="fa fa-sign-out mr-3"></i> <span>Exit</span></button>
+</mat-menu>
+
+<!-- sidenav -->
+<mat-drawer-container class="h-full ">
+    <mat-drawer  opened mode="side" [style.width]="sidenavWidth()" >
+        <app-custom-sidenav [collapsed]="collapsed()" />
+        
+    </mat-drawer>
+    <mat-drawer-content [style.margin-left]="sidenavWidth()" class="pl-4 pt-2 bg-white w-full h-full">
+          <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

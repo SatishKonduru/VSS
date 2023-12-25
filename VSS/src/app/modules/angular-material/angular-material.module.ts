@@ -10,6 +10,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 
@@ -24,7 +26,8 @@ const materialComponents = [
    MatTableModule,
    MatToolbarModule,
    MatTooltipModule,
-   MatSidenavModule
+   MatSidenavModule,
+   MatButtonModule
 ]
 @NgModule({
    imports: [materialComponents],

@@ -18,6 +18,7 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  { path: 'vss', loadChildren: () => import('./modules/vss/vss.module').then(m => m.VssModule) },
   {
     path: '**',
     component: PageNotFoundComponent
