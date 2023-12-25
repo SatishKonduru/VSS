@@ -14,6 +14,8 @@ html,body{height: 100%;}
     font-family: 'poppins', sans-serif;
 }
 
+
+
 /* TailwindCSS */
 @tailwind base;
 @tailwind components;
@@ -21,3 +23,18 @@ html,body{height: 100%;}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-mdc-snack-bar-container{
+    &.error-snackbar{
+        --mdc-snackbar-container-color: rgb(165,19,19) !important;
+        --mdc-snackbar-supporting-text-color: #fff !important;
+    }
+}
+
+.mat-mdc-snack-bar-container{
+    &.success-snackbar{
+        --mdc-snackbar-container-color: rgb(0,107,0) !important;
+        --mdc-snackbar-supporting-text-color: #fff !important;
+    }
+}

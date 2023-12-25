@@ -12,8 +12,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
-
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 const materialComponents = [
@@ -29,7 +29,9 @@ const materialComponents = [
    MatTooltipModule,
    MatSidenavModule,
    MatButtonModule,
-   MatExpansionModule
+   MatExpansionModule,
+   MatSelectModule,
+   MatDialogModule
 ]
 @NgModule({
    imports: [materialComponents],

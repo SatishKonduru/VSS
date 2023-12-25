@@ -12,6 +12,9 @@ import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, PB_DIRECTION } from 'ngx
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { VssModule } from './modules/vss/vss.module';
 import { CommonModule } from '@angular/common';
+import { UserService } from './services/user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 
@@ -32,7 +35,8 @@ const ngxUiLoaderConfig : NgxUiLoaderConfig = {
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -43,10 +47,12 @@ const ngxUiLoaderConfig : NgxUiLoaderConfig = {
     FormsModule,
     ReactiveFormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    VssModule
+    VssModule,
+    HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    UserService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,7 +5,7 @@
             <img src="../../../assets/img/LOGO.png" class="h-16 w-18 ">
         </div>
     <!-- Your lregister form goes here -->
-      <form [formGroup]="registerForm" >
+      <form [formGroup]="registerForm" > 
         <div class="mb-3">
           <label for="username" class="block text-sm font-medium text-gray-600">Username:</label>
           <input matInput type="text" formControlName="username" class="mt-1 p-2 w-full border rounded">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="Email" class="block text-sm font-medium text-gray-600">Email: :</label>
+          <label for="Email" class="block text-sm font-medium text-gray-600">Email: </label>
           <input matInput type="email" formControlName="email" class="mt-1 p-2 w-full border rounded">
           <mat-error *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid" class="font-thin text-red-600 text-sm">
             <span *ngIf="registerForm.controls.email.errors?.required">Email is Required.</span>
@@ -33,11 +33,24 @@
         </div>
 
         <div class="mb-3">
-          <label for="contactNumber" class="block text-sm font-medium text-gray-600">Contact Number: :</label>
+          <label for="contactNumber" class="block text-sm font-medium text-gray-600">Contact Number: </label>
           <input matInput type="text" formControlName="contactNumber" class="mt-1 p-2 w-full border rounded">
           <mat-error *ngIf="registerForm.controls.contactNumber.touched && registerForm.controls.contactNumber.invalid" class="font-thin text-red-600 text-sm">
             <span *ngIf="registerForm.controls.contactNumber.errors?.required">Contact Number  is Required.</span>
             <span *ngIf="registerForm.controls.contactNumber.errors?.pattern">Invalid Contact Number</span>
+          </mat-error>
+        </div>
+
+        <div class="mb-3">
+          <label for="department" class="block text-sm font-medium text-gray-600">Department</label>
+          <mat-select formControlName="department" class="mt-1 p-2 w-full border rounded bg-white"> 
+                <mat-option value="Angular">Angular</mat-option>
+                <mat-option value="Backend">Backend</mat-option>
+                <mat-option value="DBA">DBA</mat-option>
+          </mat-select>
+          <mat-error *ngIf="registerForm.controls.department.touched && registerForm.controls.department.invalid" class="font-thin text-red-600 text-sm">
+            <span *ngIf="registerForm.controls.department.errors?.required">Department  is Required.</span>
+            
           </mat-error>
         </div>
         <div class="flex justify-center">
