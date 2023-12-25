@@ -9,7 +9,7 @@
   </section>
   <mat-nav-list >
    @for(item of menuItems(); track item.label){
-        <a mat-list-item  class="-mt-3" [routerLink]="['/admin/',item.route]" routerLinkActive="selected-menu-item" #rla="routerLinkActive" [activated]="rla.isActive" class="menuItem">
+        <a mat-list-item  class="-mt-3" [routerLink]="['/vss/',item.route]" routerLinkActive="selected-menu-item" #rla="routerLinkActive" [activated]="rla.isActive" class="menuItem">
           <mat-icon matListItemIcon [fontSet]="rla.isActive? 'material-icons' : 'material-icons-outlined'">{{item.icon}}</mat-icon>
           @if(!sidenavCollapsed()){
             <span matListItemTitle>{{item.label}}</span>

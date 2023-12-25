@@ -1,6 +1,6 @@
 
 <header
-  class="bg-white text-orange-500 p-4 flex items-center justify-between sticky top-0 myHeader z-10"
+  class="bg-rose-100 text-orange-500 p-4 flex items-center justify-between sticky top-0 myHeader z-10"
 >
   <!-- Left side: Logo -->
   <div class="flex items-center">
@@ -14,12 +14,7 @@
     />
   </div>
 
-  <!-- Center: Navigation -->
-  <nav class="hidden md:flex items-center space-x-4">
-    <a [routerLink]="'/admin/home'" class="no-underline hover:border-b-4 text-orange-500  hover:border-orange-500 transition duration-300">Home</a>
-    <a routerLink="/admin/rooms" class="no-underline hover:border-b-4 text-orange-500  hover:border-orange-500 transition duration-300">Rooms</a>
-    <a routerLink="/admin/reviews" class="no-underline hover:border-b-4 text-orange-500  hover:border-orange-500 transition duration-300">Reviews</a>
-  </nav>
+ 
 
   <!-- Right side: User buttons -->
   <div class="flex items-center space-x-4">
@@ -40,7 +35,7 @@
         <app-custom-sidenav [collapsed]="collapsed()" />
         
     </mat-drawer>
-    <mat-drawer-content [style.margin-left]="sidenavWidth()" class="pl-4 pt-2 bg-white w-full h-full">
+    <mat-drawer-content [style.margin-left]="sidenavWidth()" class="pl-4 pt-4 bg-white w-full h-full">
           <router-outlet></router-outlet>
     </mat-drawer-content>
 </mat-drawer-container>

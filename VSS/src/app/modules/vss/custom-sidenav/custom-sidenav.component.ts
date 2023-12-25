@@ -26,9 +26,9 @@ export class CustomSidenavComponent {
           role:""
       },
       {
-        icon: 'user',
+        icon: 'supervisor_account',
         label: 'Employees',
-        route: 'employee',
+        route: 'employees',
         role:""
     }
     ])
