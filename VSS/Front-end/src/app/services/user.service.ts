@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,12 @@ export class UserService {
       headers: new HttpHeaders().set('Content-Type','application/json')
     })
   }
+
+  login(data: any):Observable<any>{
+    return this._http.post(this._url+'/user/login', data, {
+      headers: new HttpHeaders().set('Content-Type','application/json')
+    })
+  }
+
 
 }

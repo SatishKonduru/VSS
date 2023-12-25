@@ -15,6 +15,8 @@ import { CommonModule } from '@angular/common';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { DashboardService } from './services/dashboard.service';
+import { AuthService } from './services/auth.service';
 
 
 
@@ -52,7 +54,9 @@ const ngxUiLoaderConfig : NgxUiLoaderConfig = {
   ],
   providers: [
     provideClientHydration(),
-    UserService
+    UserService,
+    DashboardService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
