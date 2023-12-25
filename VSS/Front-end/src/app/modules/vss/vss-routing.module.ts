@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { VssComponent } from './vss.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { RouteGuardService } from '../../services/route-guard.service';
 
 
 const routes: Routes = [
@@ -12,7 +13,11 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [RouteGuardService],
+        data: {
+          expectedRole: ['admin','user']
+        }
       },
       {
         path: 'employees',

@@ -13,22 +13,24 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { VssModule } from './modules/vss/vss.module';
 import { CommonModule } from '@angular/common';
 import { UserService } from './services/user.service';
-import { HttpClientModule } from '@angular/common/http';
+import {  HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
+import { RouteGuardService } from './services/route-guard.service';
+import { TokenInterceptor} from './services/token.interceptor';
 
 
 
 const ngxUiLoaderConfig : NgxUiLoaderConfig = {
   text: 'Loading...',
-  textColor: 'orange',
+  textColor: 'pink',
   textPosition: 'center-center',
-  pbColor: 'orange',
-  bgsColor: 'orange',
-  fgsColor: 'orange',
+  pbColor: 'pink',
+  bgsColor: 'pink',
+  fgsColor: 'pink',
   fgsType: SPINNER.foldingCube,
-  fgsSize: 100,
+  fgsSize: 80,
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 5
 }
@@ -56,7 +58,13 @@ const ngxUiLoaderConfig : NgxUiLoaderConfig = {
     provideClientHydration(),
     UserService,
     DashboardService,
-    AuthService
+    AuthService,
+    RouteGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
