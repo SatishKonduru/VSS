@@ -7,6 +7,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { CustomSidenavComponent } from './custom-sidenav/custom-sidenav.component';
 import { VssComponent } from './vss.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { VssComponent } from './vss.component';
   imports: [
     CommonModule,
     AngularMaterialModule,
-    VssRoutingModule
+    VssRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class VssModule { }

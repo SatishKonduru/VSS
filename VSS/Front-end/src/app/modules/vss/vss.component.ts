@@ -14,6 +14,7 @@ export class VssComponent {
   constructor(private _router: Router){}
   
   onExit(){
+    localStorage.clear()
     this._router.navigate(['/login'])
   }
 

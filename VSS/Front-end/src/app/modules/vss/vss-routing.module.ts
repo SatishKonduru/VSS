@@ -21,7 +21,11 @@ const routes: Routes = [
       },
       {
         path: 'employees',
-        component: EmployeesComponent
+        component: EmployeesComponent,
+        canActivate: [RouteGuardService],
+        data: {
+          expectedRole: ['admin','user']
+        }
       }
     ]
   }

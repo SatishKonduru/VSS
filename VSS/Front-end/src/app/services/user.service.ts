@@ -29,5 +29,9 @@ export class UserService {
     })
   }
 
+  getUsersList():Observable<any>{
+    return this._http.get(this._url+'/user/getUsers')
+  }
+
 
 }

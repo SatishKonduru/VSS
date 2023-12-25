@@ -8,7 +8,6 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private _router: Router) {}
-
   intercept(request: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>>{
     const token = localStorage.getItem('token')
     console.log("Token from localstorage in Interceptor: ", token)

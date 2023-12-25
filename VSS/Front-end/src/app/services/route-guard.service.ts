@@ -20,7 +20,8 @@ export class RouteGuardService  implements CanActivate{
 
     canActivate(route: ActivatedRouteSnapshot): boolean  {
       let expectedRoleArray = route.data.expectedRole
-      const token: any = localStorage.getItem('token')
+      
+      var token = localStorage.getItem('token')
       console.log("Token in Route Guard: ", token)
       var tokenPayload : any
       try{
@@ -39,7 +40,9 @@ export class RouteGuardService  implements CanActivate{
         }
       }
       if(tokenPayload.role == 'user' || tokenPayload.role == 'admin'){
-        if(this.auth.isAuthenticated() && checkRole){return true}
+        if(this.auth.isAuthenticated() && checkRole){
+                  return true
+        }
         else{
           this._snackbar.openSnackbar(globalProperties.unauthorized, globalProperties.error)
         }

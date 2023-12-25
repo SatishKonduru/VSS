@@ -8,10 +8,10 @@
       <form [formGroup]="registerForm" > 
         <div class="mb-3">
           <label for="username" class="block text-sm font-medium text-gray-600">Username:</label>
-          <input matInput type="text" formControlName="username" class="mt-1 p-2 w-full border rounded">
-          <mat-error *ngIf="registerForm.controls.username.touched && registerForm.controls.username.invalid" class="font-thin text-red-600 text-sm">
-            <span *ngIf="registerForm.controls.username.errors?.required">Username is Required.</span>
-            <span *ngIf="registerForm.controls.username.errors?.pattern">Invalid Username</span>
+          <input matInput type="text" formControlName="name" class="mt-1 p-2 w-full border rounded">
+          <mat-error *ngIf="registerForm.controls.name.touched && registerForm.controls.name.invalid" class="font-thin text-red-600 text-sm">
+            <span *ngIf="registerForm.controls.name.errors?.required">Username is Required.</span>
+            <span *ngIf="registerForm.controls.name.errors?.pattern">Invalid Username</span>
           </mat-error>
         </div>
       

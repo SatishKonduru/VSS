@@ -4,6 +4,8 @@ const router = express.Router()
 const nodemailer = require('nodemailer')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
+// var auth =require('../services/authentication')
+// var checkRole = require('../services/checkRole')
 
 
 var transporter = nodemailer.createTransport({
@@ -102,7 +104,17 @@ router.post('/login', (req, res) => {
     })
 })
 
-
+router.get('/getUsers', (req, res) => {
+    var query = "select * from users"
+    connection.query(query,(err, results)=> {
+        if(!err){
+            res.status(200).json(results)
+        }
+        else{
+            return res.status(500).json(err)
+        }
+    })
+})
 
 
 module.exports = router
