@@ -65,7 +65,7 @@ upload(file: File): Observable<HttpEvent<any>> {
 
   formData.append('file', file);
 
-  const req = new HttpRequest('POST', `${this._url}/upload`, formData, {
+  const req = new HttpRequest('POST', `${this._url}/user/upload`, formData, {
     reportProgress: true,
     responseType: 'json',
   });
