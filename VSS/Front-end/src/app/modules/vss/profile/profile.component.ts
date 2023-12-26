@@ -65,11 +65,6 @@ selectFile(event: any): void {
 }
 }
 
-
-
-
-
-
 upload(): void {
   this.progress = 0;
 

@@ -73,7 +73,7 @@ upload(file: File): Observable<HttpEvent<any>> {
   return this._http.request(req);
 }
 getFiles(): Observable<any> {
-  return this._http.get(`${this._url}/files`);
+  return this._http.get(`${this._url}/user/files`);
 }
 
 
