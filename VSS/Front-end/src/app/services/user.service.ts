@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  public userId : any = ''
   private _url = environment.apiURL;
   constructor(private _http: HttpClient) { }
 
@@ -33,6 +34,10 @@ export class UserService {
     return this._http.get(this._url+'/user/getUsers')
   }
 
+  getUser(id: any):Observable<any>{
+    return this._http.get(this._url+'getUserById/'+id)
+  }
+ 
   updateStatus(data: any){
     return this._http.patch(this._url+'/user/updateStatus/', data,{
       headers: new HttpHeaders().set('Content-Type','application/json')

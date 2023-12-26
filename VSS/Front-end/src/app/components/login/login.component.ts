@@ -16,6 +16,7 @@ import { SnackbarService } from '../../services/snackbar.service';
 export class LoginComponent  implements OnInit{
   loginForm: any = FormGroup
   responseMsg: any = ''
+  id: any
   constructor(
     private _router: Router, 
     private _formBuilder: FormBuilder, 
@@ -40,7 +41,7 @@ export class LoginComponent  implements OnInit{
     .subscribe((res: any) => {
       this._ngxService.stop()
       localStorage.setItem('token',res.token)
-      this._router.navigate(['/vss/dashboard'])
+       this._router.navigate(['/vss/dashboard'])
     }, (err: any) => {
       this._ngxService.stop()
       if(err.error?.message){

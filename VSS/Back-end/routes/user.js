@@ -77,7 +77,7 @@ router.post('/forgotPassword', (req, res) => {
 
 router.post('/login', (req, res) => {
     const user = req.body
-    query = "select email, password, role, status from users where email=?"
+    query = "select id, email, password, role, status from users where email=?"
     connection.query(query, [user.email],(err, results) => {
         if(!err){
             if(results.length <= 0 || results[0].password != user.password) {
@@ -109,6 +109,25 @@ router.get('/getUsers', (req, res) => {
     connection.query(query,(err, results)=> {
         if(!err){
             res.status(200).json(results)
+        }
+        else{
+            return res.status(500).json(err)
+        }
+    })
+})
+
+router.get('/getUserById/:id', (req, res) => {
+    let id = req.params.id
+    var query = "select * from users where id=?"
+    connection.query(query,[id],(err, results)=> {
+        if(!err){
+            if(results.length <= 0){
+                return res.status(401).json({message: ' No Employee found'})
+            }
+            else{
+                return res.status(200).json(results[0])
+            }
+            
         }
         else{
             return res.status(500).json(err)
