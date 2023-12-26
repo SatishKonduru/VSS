@@ -9,6 +9,7 @@ import { globalProperties } from '../../../shared/globalProperties';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EmpComponent } from '../emp/emp.component';
 import { Router } from '@angular/router';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 
 @Component({
   selector: 'app-emp-mgmt',
@@ -20,6 +21,7 @@ export class EmpMgmtComponent implements OnInit{
   dataSource: any;
   responseMsg: any = ''
   searchKey : string = ''
+  length: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort : MatSort
   constructor(
@@ -28,6 +30,7 @@ export class EmpMgmtComponent implements OnInit{
     private _snackbar: SnackbarService,
     private _userDialog: MatDialog,
     private _router: Router
+    
     ){}
 
     ngOnInit(): void { 
@@ -101,6 +104,45 @@ export class EmpMgmtComponent implements OnInit{
       this._router.events.subscribe(()=>{dialogRef.close()})
       dialogRef.componentInstance.onEditEmp.subscribe((res: any) => {
         this.getEmployeeList()
+      })
+    }
+
+    deleteEmp( emp: any){
+      // this.dataSource.splice(value, 1)
+      // this.dataSource = [...this.dataSource]
+      // this.length = this.dataSource.length
+      // this.dataSource.paginator = this.paginator
+      const dialogConfig = new MatDialogConfig()
+      dialogConfig.width =  '400px'
+      dialogConfig.position = {top: '10px'}
+      dialogConfig.disableClose = true
+      dialogConfig.autoFocus = true
+      dialogConfig.data = {
+        message: 'Are you sure for Delete Employee:  '+emp.name
+      }
+      const dialogRef =  this._userDialog.open(ConfirmationComponent, dialogConfig)
+      dialogRef.componentInstance.onEmitStatusChage.subscribe((res: any) => {
+        this._ngxService.start()
+        this.delete(emp.id)
+        dialogRef.close()
+      })
+    }
+    delete(id: any){
+      this._userService.delete(id)
+      .subscribe((res: any) => {
+        this._ngxService.stop()
+        this.getEmployeeList()
+        this.responseMsg = res?.message
+        this._snackbar.openSnackbar(this.responseMsg, 'success')
+      }, (err: any) => {
+        this._ngxService.stop()
+        if(err.error?.message){
+          this.responseMsg = err.error?.message
+        }
+        else{
+          this.responseMsg = globalProperties.genericError
+        }
+        this._snackbar.openSnackbar(this.responseMsg, globalProperties.error)
       })
     }
 

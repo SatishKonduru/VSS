@@ -49,4 +49,9 @@ export class UserService {
     return this._http.get(this._url+'/user/dept')
   }
 
+  delete(id: any){
+    return this._http.delete(this._url+'/user/delete/'+id,{
+      headers: new HttpHeaders().set('Content-Type','application/json')})
+  }
+
 }

@@ -10,6 +10,8 @@ import { VssComponent } from './vss.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmpMgmtComponent } from './emp-mgmt/emp-mgmt.component';
 import { EmpComponent } from './emp/emp.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { EmpComponent } from './emp/emp.component';
     EmployeesComponent,
     CustomSidenavComponent,
     EmpMgmtComponent,
-    EmpComponent
+    EmpComponent,
+    ConfirmationComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

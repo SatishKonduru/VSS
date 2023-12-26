@@ -2,8 +2,8 @@
     <input  [(ngModel)] = 'searchKey' (keyup)="applyFilter($event.target.value)"  placeholder="seach..." class="rounded-lg border border-pink-500 mt-0 focus:border focus:border-pink-500 pl-4">
 </div>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-
+<!-- <table mat-table [dataSource]="dataSource | slice: page.pageIndex * page.pageSize : (page.pageIndex + 1) * page.pageSize" class="mat-elevation-z8" matSort> -->
+    <table mat-table [dataSource]="dataSource " class="mat-elevation-z8" matSort>
             <!-- <ng-container matColumnDef="image">
                 <th mat-header-cell *matHeaderCellDef >Image</th>
                 <td mat-cell *matCellDef="let element" >
@@ -48,7 +48,7 @@
 
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element; let i = index">
                 <button mat-icon-button color="primary" matTooltip="Edit" (click)="editEmp(element)"><mat-icon>edit</mat-icon></button>
                 <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteEmp(element)"><mat-icon>delete</mat-icon></button>
             </td>
@@ -59,7 +59,7 @@
 </table>
 <br>
 <div>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"
+    <mat-paginator #page [pageSizeOptions]="[5, 10, 25, 50, 100]"
                                     [pageSize]="5"
                                     showFirstLastButtons=""></mat-paginator>
 </div>
