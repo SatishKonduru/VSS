@@ -10,7 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { VssModule } from './modules/vss/vss.module';
+
 import { CommonModule } from '@angular/common';
 import { UserService } from './services/user.service';
 import {  HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -19,6 +19,9 @@ import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { RouteGuardService } from './services/route-guard.service';
 import { TokenInterceptor} from './services/token.interceptor';
+
+import { VssModule } from './modules/vss/vss.module';
+
 
 
 
@@ -40,7 +43,8 @@ const ngxUiLoaderConfig : NgxUiLoaderConfig = {
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+
   ],
   imports: [
     CommonModule,

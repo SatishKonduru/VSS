@@ -33,5 +33,20 @@ export class UserService {
     return this._http.get(this._url+'/user/getUsers')
   }
 
+  updateStatus(data: any){
+    return this._http.patch(this._url+'/user/updateStatus/', data,{
+      headers: new HttpHeaders().set('Content-Type','application/json')
+    })
+  }
+
+  update(data: any){
+    return this._http.patch(this._url+'/user/update/', data,{
+      headers: new HttpHeaders().set('Content-Type','application/json')
+    })
+  }
+
+  getDepts(){
+    return this._http.get(this._url+'/user/dept')
+  }
 
 }

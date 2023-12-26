@@ -8,6 +8,8 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { CustomSidenavComponent } from './custom-sidenav/custom-sidenav.component';
 import { VssComponent } from './vss.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmpMgmtComponent } from './emp-mgmt/emp-mgmt.component';
+import { EmpComponent } from './emp/emp.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     VssComponent,
     DashboardComponent,
     EmployeesComponent,
-    CustomSidenavComponent
+    CustomSidenavComponent,
+    EmpMgmtComponent,
+    EmpComponent
   ],
   imports: [
     CommonModule,

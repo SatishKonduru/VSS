@@ -15,12 +15,15 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit{
   registerForm : any = FormGroup
   responseMsg: any = ''
+  data : any =[]
   constructor(
     private _formBuilder: FormBuilder, 
     private _ngxService: NgxUiLoaderService,
     private _userService: UserService,
     private _snackbar: SnackbarService,
-    private _router: Router){}
+    private _router: Router){
+     
+    }
   ngOnInit(): void {
     this.registerForm = this._formBuilder.group({
       name: [null,[Validators.required, Validators.pattern(globalProperties.nameRegx)]],
@@ -29,11 +32,14 @@ export class RegisterComponent implements OnInit{
       contactNumber: [null,[Validators.required, Validators.pattern(globalProperties.contactNumberRegex)]],
       department: [null,[Validators.required]]
     })
+    
   }
 
   userRegister(){
+    
    this._ngxService.start()
    var formData = this.registerForm.value
+   console.log("Data: ", formData)
    var data = {
     name: formData.name,
     contactNumber: formData.contactNumber,
@@ -59,5 +65,6 @@ export class RegisterComponent implements OnInit{
    })
 
   }
+
 
 }

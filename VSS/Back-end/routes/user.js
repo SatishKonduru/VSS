@@ -4,8 +4,8 @@ const router = express.Router()
 const nodemailer = require('nodemailer')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
-// var auth =require('../services/authentication')
-// var checkRole = require('../services/checkRole')
+var auth =require('../services/authentication')
+var checkRole = require('../services/checkRole')
 
 
 var transporter = nodemailer.createTransport({
@@ -116,5 +116,53 @@ router.get('/getUsers', (req, res) => {
     })
 })
 
+router.patch('/updateStatus',  (req, res) => {
+    let user = req.body
+    var query = "update users set status=? where id=?"
+    connection.query(query,[user.status, user.id], (err, results) => {
+        if(!err){
+            if(results.affectedRows == 0){
+                return res.status(404).json({message: 'User Id does not Exist'})
+            }
+            else{
+                return res.status(200).json({message: 'User Updated succesfully.'})
+            }
+        }
+        else{
+            return res.status(500).json(err)
+        }
+    })
+})
+
+router.patch('/update',  (req, res) => {
+    let user = req.body
+    var query = "update users set name=?, department=?, task=?, progress=? where id=?"
+    connection.query(query,[user.name,user.department, user.task,user.progress, user.id], (err, results) => {
+        if(!err){
+            if(results.affectedRows == 0){
+                return res.status(404).json({message: 'User Id does not Exist'})
+            }
+            else{
+                return res.status(200).json({message: 'User Updated succesfully.'})
+            }
+        }
+        else{
+            return res.status(500).json(err)
+        }
+    })
+})
+
+
+router.get('/dept', auth.authenticateToken, checkRole.checkRole,(req, res) => {
+    query = "select * from departments"
+    connection.query(query, (err, results) => {
+        if(!err){
+            return res.status(200).json(results)
+        }
+        else{
+            return res.status(500).json(err)
+        }
+    })
+})
 
 module.exports = router

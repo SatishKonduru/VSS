@@ -4,6 +4,7 @@ import { VssComponent } from './vss.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { RouteGuardService } from '../../services/route-guard.service';
+import { EmpMgmtComponent } from './emp-mgmt/emp-mgmt.component';
 
 
 const routes: Routes = [
@@ -19,12 +20,22 @@ const routes: Routes = [
           expectedRole: ['admin','user']
         }
       },
+
       {
         path: 'employees',
         component: EmployeesComponent,
         canActivate: [RouteGuardService],
         data: {
           expectedRole: ['admin','user']
+        }
+      },
+      
+      {
+        path: 'empMgmt',
+        component: EmpMgmtComponent,
+        canActivate: [RouteGuardService],
+        data: {
+          expectedRole: ['admin']
         }
       }
     ]

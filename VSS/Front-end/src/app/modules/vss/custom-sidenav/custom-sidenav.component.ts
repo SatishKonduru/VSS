@@ -30,7 +30,13 @@ export class CustomSidenavComponent {
         label: 'Employees',
         route: 'employees',
         role:""
-    }
+    },
+    {
+      icon: 'assignment_ind',
+      label: 'Employees Mgmt',
+      route: 'empMgmt',
+      role:""
+  }
     ])
   
   profilePicSize = computed(()=> this.sidenavCollapsed() ? '32' : '80')

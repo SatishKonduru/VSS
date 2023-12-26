@@ -1,0 +1,59 @@
+
+    <div class="bg-slate-50 p-8 rounded shadow-lg border-2 w-48 sm:w-96 -mt-2">
+        <div class="flex justify-center text-center mb-4 -mt-2">
+            <img src="../../../assets/img/LOGO.png" class="h-16 w-18 ">
+        </div>
+    <!-- Your lregister form goes here -->
+      <form [formGroup]="empForm" > 
+        <div class="mb-3">
+          <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
+          <input matInput type="text" formControlName="name" class="mt-1 p-2 w-full border rounded">
+          <mat-error *ngIf="empForm.controls.name.touched && empForm.controls.name.invalid" class="font-thin text-red-600 text-sm">
+            <span *ngIf="empForm.controls.name.errors?.required">Username is Required.</span>
+            <span *ngIf="empForm.controls.name.errors?.pattern">Invalid Username</span>
+          </mat-error>
+        </div>
+          
+
+        <div class="mb-3">
+          <label for="department" class="block text-sm font-medium text-gray-600">Department</label>
+          <mat-select formControlName="department" class="mt-1 p-2 w-full border rounded bg-white"> 
+                <mat-option  *ngFor = "let dept of data" [value]="dept.name" >{{dept.name}}</mat-option>
+            </mat-select>
+          <mat-error *ngIf="empForm.controls.department.touched && empForm.controls.department.invalid" class="font-thin text-red-600 text-sm">
+            <span *ngIf="empForm.controls.department.errors?.required">Department  is Required.</span>
+            
+          </mat-error>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="block text-sm font-medium text-gray-600">Task:</label>
+            <input matInput type="text" formControlName="task" class="mt-1 p-2 w-full border rounded">
+            <mat-error *ngIf="empForm.controls.task.touched && empForm.controls.task.invalid" class="font-thin text-red-600 text-sm">
+              <span *ngIf="empForm.controls.task.errors?.required">Task Required.</span>
+              
+            </mat-error>
+          </div>
+
+          <div class="mb-3">
+            <label for="username" class="block text-sm font-medium text-gray-600">Progress:</label>
+            <mat-select formControlName="progress" class="mt-1 p-2 w-full border rounded bg-white"> 
+                <mat-option  [value]="'Assigned'">Assigned</mat-option>
+                <mat-option [value]="'In Progress'">In Progress</mat-option>
+                <mat-option [value]="'Completed'">Completed</mat-option>
+          </mat-select>
+            <mat-error *ngIf="empForm.controls.progress.touched && empForm.controls.progress.invalid" class="font-thin text-red-600 text-sm">
+              <span *ngIf="empForm.controls.progress.errors?.required">Must Select the Progress</span>
+             </mat-error>
+          </div>
+        <div class="flex justify-center">
+          <button type="submit" class="bg-orange-500 text-white p-2 rounded" (click)="updateEmp()" [disabled]="!(empForm.valid && empForm.dirty)">{{action}}</button>
+          <button mat-link-button color="warn" mat-dialog-close class="ml-4">Close</button>
+        </div>
+        
+      </form>
+      
+    </div>
+  
+  
+

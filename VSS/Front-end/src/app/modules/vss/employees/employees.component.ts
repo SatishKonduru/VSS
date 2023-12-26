@@ -25,7 +25,7 @@ export class EmployeesComponent implements OnInit {
     private _snackbar: SnackbarService
     ){}
 
-    ngOnInit(): void {
+    ngOnInit(): void { 
       this._ngxService.start()
       this.getEmployeeList()
     }
