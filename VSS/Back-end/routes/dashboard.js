@@ -11,8 +11,7 @@ router.get('/details',auth.authenticateToken, (req, res) => {
     connection.query(query, (err, results) => {
         if(!err){
             angularCount  = results[0].angularCount
-            console.log("In Sever: ", angularCount)
-        }
+         }
         else{
             return res.status(500).json(err)
         }

@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { RouteGuardService } from '../../services/route-guard.service';
 import { EmpMgmtComponent } from './emp-mgmt/emp-mgmt.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [

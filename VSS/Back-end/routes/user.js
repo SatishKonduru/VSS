@@ -92,7 +92,7 @@ router.post('/login', (req, res) => {
                     role: results[0].role
                 }
                 const accessToken = jwt.sign(payLoad, process.env.SECRET_KEY, {expiresIn: '2h'})
-                return res.status(200).json({token: accessToken})
+                return res.status(200).json({token: accessToken, id: results[0].id})
             }
             else{
                 return res.status(400).json({message: 'Something Went Wrong! Please try again later.'})
@@ -204,6 +204,7 @@ router.delete('/delete/:id', auth.authenticateToken, checkRole.checkRole,(req, r
     })
 
 })
+
 
 
 

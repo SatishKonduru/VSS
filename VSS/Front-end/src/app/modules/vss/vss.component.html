@@ -19,13 +19,14 @@
   <!-- Right side: User buttons -->
   <div class="flex items-center space-x-4">
        <img type="button" src="../../../../assets/img/Satish.jpeg" class="w-12 h-12 rounded-full border-2  border-orange-500 hover:cursor-pointer"  [matMenuTriggerFor]="menu">
+       <span class="font-semibold text-blue-700">{{user.name}}</span>
      </div>
 </header>
 
 
 <!-- user action menu -->
 <mat-menu #menu="matMenu">
-  <button mat-menu-item class="menu-item"><i class="fa fa-user mr-3"></i><span>Profile</span></button>
+  <button mat-menu-item class="menu-item" (click)="userProfile()"><i class="fa fa-user mr-3" ></i><span>Profile</span></button>
   <button mat-menu-item class="menu-item" (click)="onExit()"><i class="fa fa-sign-out mr-3"></i> <span>Exit</span></button>
 </mat-menu>
 

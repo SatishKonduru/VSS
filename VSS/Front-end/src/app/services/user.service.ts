@@ -35,7 +35,7 @@ export class UserService {
   }
 
   getUser(id: any):Observable<any>{
-    return this._http.get(this._url+'getUserById/'+id)
+    return this._http.get(this._url+'/user/getUserById/'+id)
   }
  
   updateStatus(data: any){
@@ -58,5 +58,10 @@ export class UserService {
     return this._http.delete(this._url+'/user/delete/'+id,{
       headers: new HttpHeaders().set('Content-Type','application/json')})
   }
+
+
+
+
+
 
 }

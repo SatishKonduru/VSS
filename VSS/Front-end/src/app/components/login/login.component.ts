@@ -41,6 +41,7 @@ export class LoginComponent  implements OnInit{
     .subscribe((res: any) => {
       this._ngxService.stop()
       localStorage.setItem('token',res.token)
+      localStorage.setItem('userId', res.id)
        this._router.navigate(['/vss/dashboard'])
     }, (err: any) => {
       this._ngxService.stop()
