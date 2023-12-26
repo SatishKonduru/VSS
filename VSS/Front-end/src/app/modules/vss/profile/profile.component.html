@@ -2,9 +2,9 @@
 
     <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
   
-      <div class="flex items-center justify-center">
-        <img src="profile-image.jpg" alt="Profile Image" class="w-16 h-16 rounded-full">
-      </div>
+      <!-- <div class="flex items-center justify-center">
+        <img  alt="Profile Image" class="w-16 h-16 rounded-full" [src]=" '.urlLink' ">
+      </div> -->
   
       <div class="mt-4">
         <h1 class="text-2xl font-bold">{{user.name}}</h1>
@@ -17,10 +17,17 @@
         <p class="text-gray-600">Phone: {{user.contactNumber}}</p>
       </div>
   
+      <div>
+        <img [src]="preview" class="preview">
+      </div>
       <div class="mt-6">
-       
-            <input type="file" (change)="onFileSelected($event)" /><br>
-            <button (click)="uploadImage()">Upload Image</button>
+        <input type="file" accept="image/*" (change)="selectFile($event)" />
+        <button
+         [disabled]="!selectedFiles"
+        (click)="upload()"
+      >
+        Upload
+      </button>
           
       </div>
   

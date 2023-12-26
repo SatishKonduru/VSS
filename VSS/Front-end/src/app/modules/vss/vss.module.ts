@@ -13,7 +13,6 @@ import { EmpComponent } from './emp/emp.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ProfileComponent } from './profile/profile.component';
 
-
 @NgModule({
   declarations: [
     VssComponent,

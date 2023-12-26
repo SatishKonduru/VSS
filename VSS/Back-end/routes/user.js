@@ -8,6 +8,7 @@ var auth =require('../services/authentication')
 var checkRole = require('../services/checkRole')
 
 
+
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -205,6 +206,7 @@ router.delete('/delete/:id', auth.authenticateToken, checkRole.checkRole,(req, r
 
 })
 
+//file upload
 
 
 

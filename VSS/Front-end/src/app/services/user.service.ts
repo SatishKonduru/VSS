@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -59,9 +59,22 @@ export class UserService {
       headers: new HttpHeaders().set('Content-Type','application/json')})
   }
 
+//file upload
+upload(file: File): Observable<HttpEvent<any>> {
+  const formData: FormData = new FormData();
 
+  formData.append('file', file);
 
+  const req = new HttpRequest('POST', `${this._url}/upload`, formData, {
+    reportProgress: true,
+    responseType: 'json',
+  });
 
+  return this._http.request(req);
+}
+getFiles(): Observable<any> {
+  return this._http.get(`${this._url}/files`);
+}
 
 
 }
