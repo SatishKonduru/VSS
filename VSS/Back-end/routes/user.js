@@ -231,7 +231,8 @@ var storage = multer.diskStorage({
   var upload = multer({ storage: storage })
   router.post('/upload', upload.single('photo'), (req, res) => {
     try {
-      console.log("Request received in Server: ", req.file);
+
+      console.log("Request received in Server: ", req);
       res.send({ 'message': "success" });
     } catch (error) {
       console.error("Error handling file upload:", error);
