@@ -222,18 +222,22 @@ var storage = multer.diskStorage({
     }
   })
   var upload = multer({
-    storage: storage,
-    limits: {
-      fileSize: 1024 * 1024 * 5, // 5 MB (adjust the size limit as needed)
-    },
-  });
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5, // 5 MB (adjust the size limit as needed)
+  },
+});
 
   var upload = multer({ storage: storage })
- router.post('/upload',upload.single('photo'),  (req, res) => {
-    console.log("Request received in Server:  ", req);
-    res.send({'message': "success"})
-  })
-
+  router.post('/upload', upload.single('photo'), (req, res) => {
+    try {
+      console.log("Request received in Server: ", req.file);
+      res.send({ 'message': "success" });
+    } catch (error) {
+      console.error("Error handling file upload:", error);
+      res.status(500).send({ 'message': 'Internal Server Error' });
+    }
+  });
 
 
 module.exports = router
