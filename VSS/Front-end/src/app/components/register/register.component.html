@@ -44,9 +44,9 @@
         <div class="mb-3">
           <label for="department" class="block text-sm font-medium text-gray-600">Department</label>
           <mat-select formControlName="department" class="mt-1 p-2 w-full border rounded bg-white"> 
-                <mat-option  [value]="1">Angular</mat-option>
-                <mat-option [value]="2">Backend</mat-option>
-                <mat-option [value]="3">DBA</mat-option>
+                <mat-option  [value]="'Angular'">Angular</mat-option>
+                <mat-option [value]="'Backend'">Backend</mat-option>
+                <mat-option [value]="'DBA'">DBA</mat-option>
           </mat-select>
           <mat-error *ngIf="registerForm.controls.department.touched && registerForm.controls.department.invalid" class="font-thin text-red-600 text-sm">
             <span *ngIf="registerForm.controls.department.errors?.required">Department  is Required.</span>
