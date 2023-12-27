@@ -12,6 +12,7 @@ import { EmpMgmtComponent } from './emp-mgmt/emp-mgmt.component';
 import { EmpComponent } from './emp/emp.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProfileComponent } from './profile/profile.component';
     EmpMgmtComponent,
     EmpComponent,
     ConfirmationComponent,
-    ProfileComponent
+    ProfileComponent,
+    FileUploaderComponent
   ],
   imports: [
     CommonModule,

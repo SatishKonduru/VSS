@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SnackbarService } from '../../../services/snackbar.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,10 +14,19 @@ export class ProfileComponent implements OnInit {
   
   user : any ;
   public userId: any =''
-  selectedImage: File;
-  constructor(private _userService: UserService){  }
+  imgForm: any =  FormGroup
+  isPhotoError = false;
+  image: string;
+  submitted : boolean = false;
+  uploadError: string = '';
+  constructor(private _userService: UserService, private _formBuilder: FormBuilder, private _snackbar: SnackbarService){  }
 
   ngOnInit(): void {
+    
+    this.imgForm = this._formBuilder.group({
+      photo: [null,[Validators.required]]
+    })
+
     if(localStorage.getItem('userId')){
       this.userId = localStorage.getItem('userId')
     }
@@ -33,71 +44,45 @@ export class ProfileComponent implements OnInit {
 
 
 //file upload
-selectedFiles?: FileList;
-  currentFile?: File;
-  progress = 0;
-  message = '';
-  preview = '';
-
-  imageInfos?: Observable<any>;
-
-selectFile(event: any): void {
-  this.message = '';
-  this.preview = '';
-  this.progress = 0;
-  this.selectedFiles = event.target.files;
-
-  if (this.selectedFiles) {
-    const file: File | null = this.selectedFiles.item(0);
-
-    if (file) {this.preview = '';
-    this.currentFile = file;
-
-    const reader = new FileReader();
-
-    reader.onload = (e: any) => {
-      console.log(e.target.result);
-      this.preview = e.target.result;
-    };
-
-    reader.readAsDataURL(this.currentFile);
+PostData() {
+  this.submitted = true;
+  if(!this.imgForm.valid) {
+    return false;
   }
-}
-}
-
-upload(): void {
-  this.progress = 0;
-
-  if (this.selectedFiles) {
-    const file: File | null = this.selectedFiles.item(0);
-
-    if (file) {
-      this.currentFile = file;
-
-      this._userService.upload(this.currentFile).subscribe({
-        next: (event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.progress = Math.round((100 * event.loaded) / event.total);
-          } else if (event instanceof HttpResponse) {
-            this.message = event.body.message;
-            this.imageInfos = this._userService.getFiles();
-          }
-        },error: (err: any) => {
-          console.log(err);
-          this.progress = 0;
-
-          if (err.error && err.error.message) {
-            this.message = err.error.message;
-          } else {
-            this.message = 'Could not upload the image!';
-          }
-
-          this.currentFile = undefined;
-        },
-      });
+  if (this.imgForm.get('photo').invalid) {
+    this.isPhotoError = true;
+  }
+  this.uploadError = '';
+  const formData = new FormData();
+  formData.append('photo', this.imgForm.get('photo').value);
+  
+  // this.http.post('http://localhost:8082/upload', formData).subscribe(resp => {
+  //   if(resp['status'] == 'success') {
+  //     alert('File saved in file-upload-server/uploads');
+  //   }
+  // }, (resp)=> {
+  //   this.uploadError = 'Some error occured please try later';
+  //   console.log(resp);
+  // });
+  this._userService.upload(formData).subscribe(resp => {
+    if(resp['status'] == 'success') {
+      this._snackbar.openSnackbar('File saved in file-upload-server/uploads', '')
+      // alert('File saved in file-upload-server/uploads');
     }
+  }, (resp)=> {
+    // this.uploadError = 'Some error occured please try later';
+    this._snackbar.openSnackbar('Some error occured please try later', 'error')
+    console.log(resp);
+  });
 
-
-  }
 }
+
+onFileSelect(file: Event) {
+  this.imgForm.patchValue({ photo: file });
+  this.imgForm.get('photo').updateValueAndValidity();
+}
+
+
+
+
 }

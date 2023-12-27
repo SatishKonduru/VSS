@@ -192,10 +192,10 @@ router.delete('/delete/:id', auth.authenticateToken, checkRole.checkRole,(req, r
     connection.query(query, [id],(err, results) => {
         if(!err){
             if(results.affectedRows == 0){
-                return res.status(404).json({message:'Product Id does not found!'})
+                return res.status(404).json({message:'User Id does not found!'})
             }
             else{
-                return res.status(200).json({message: 'Product deleted Successfully'})
+                return res.status(200).json({message: 'User deleted Successfully'})
             }
         }
 
@@ -207,7 +207,26 @@ router.delete('/delete/:id', auth.authenticateToken, checkRole.checkRole,(req, r
 })
 
 //file upload
+var multer  = require('multer')
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      let originalname = file.originalname;
+  
+      let ext = originalname.split('.').pop();
+      let filename = originalname.split('.').slice(0, -1).join('.');
+  
+      cb(null, filename + '-' + Date.now()+'.'+ext)
+    }
+  })
 
+  var upload = multer({ storage: storage })
+ router.post('/upload',upload.single('photo'),  (req, res) => {
+    // console.log(req);
+    res.send({message: "success"})
+  })
 
 
 

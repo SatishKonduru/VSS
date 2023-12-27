@@ -60,20 +60,8 @@ export class UserService {
   }
 
 //file upload
-upload(file: File): Observable<HttpEvent<any>> {
-  const formData: FormData = new FormData();
-
-  formData.append('file', file);
-
-  const req = new HttpRequest('POST', `${this._url}/user/upload`, formData, {
-    reportProgress: true,
-    responseType: 'json',
-  });
-
-  return this._http.request(req);
-}
-getFiles(): Observable<any> {
-  return this._http.get(`${this._url}/user/files`);
+upload(data){
+return   this._http.post(this._url+'/user/upload', data)
 }
 
 
