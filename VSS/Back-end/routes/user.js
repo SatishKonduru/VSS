@@ -221,11 +221,17 @@ var storage = multer.diskStorage({
       cb(null, filename + '-' + Date.now()+'.'+ext)
     }
   })
+  var upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 1024 * 1024 * 5, // 5 MB (adjust the size limit as needed)
+    },
+  });
 
   var upload = multer({ storage: storage })
  router.post('/upload',upload.single('photo'),  (req, res) => {
-    // console.log(req);
-    res.send({message: "success"})
+    console.log("Request received in Server:  ", req);
+    res.send({'message': "success"})
   })
 
 

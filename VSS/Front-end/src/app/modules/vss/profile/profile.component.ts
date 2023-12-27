@@ -53,8 +53,12 @@ PostData() {
     this.isPhotoError = true;
   }
   this.uploadError = '';
+  const data = this.imgForm.value;
+  var photoValue = data.photo
+  console.log("Photo value:", photoValue);
   const formData = new FormData();
-  formData.append('photo', this.imgForm.get('photo').value);
+  formData.append('photo', photoValue);
+
   
   // this.http.post('http://localhost:8082/upload', formData).subscribe(resp => {
   //   if(resp['status'] == 'success') {
@@ -65,7 +69,7 @@ PostData() {
   //   console.log(resp);
   // });
   this._userService.upload(formData).subscribe(resp => {
-    if(resp['status'] == 'success') {
+    if(resp['message'] == 'success') {
       this._snackbar.openSnackbar('File saved in file-upload-server/uploads', '')
       // alert('File saved in file-upload-server/uploads');
     }

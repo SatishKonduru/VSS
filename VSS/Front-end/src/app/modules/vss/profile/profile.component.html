@@ -20,7 +20,7 @@
       <!-- File Upload -->
       
       <div class="mt-6">
-        <form [formGroup]="imgForm" (ngSubmit)="PostData()" enctype="multipart/form-data">
+        <form [formGroup]="imgForm"  enctype="multipart/form-data">
           <label>Upload: </label>
           <input  type="hidden" formControlName="photo"  [ngClass]="{'is-invalid': submitted && imgForm.controls.photo.invalid}">
           <app-file-uploader (onFileSelect)="onFileSelect($event)"></app-file-uploader>
@@ -36,7 +36,7 @@
           }
         </form>
           <div class="mt-2">
-            <button mat-button type="submit" color="primary">Submit</button>
+            <button mat-button type="submit" color="primary" (click)="PostData()">Submit</button>
             <button mat-button  color="link" class="ml-4">Cancel</button>
           </div>
       </div>

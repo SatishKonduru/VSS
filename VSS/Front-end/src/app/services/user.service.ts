@@ -60,7 +60,8 @@ export class UserService {
   }
 
 //file upload
-upload(data){
+upload(data: any){
+  console.log("Image data: ", data)
 return   this._http.post(this._url+'/user/upload', data)
 }
 
