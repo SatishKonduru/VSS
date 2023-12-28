@@ -38,3 +38,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         --mdc-snackbar-supporting-text-color: #fff !important;
     }
 }
+
+/* .slide-in-from-left-dialog {
+    animation: slideInFromLeft 0.5s ease-out;
+  } */
+  .slide-in-from-right {
+    animation: slideInFromRight 0.5s ease-out;
+  }

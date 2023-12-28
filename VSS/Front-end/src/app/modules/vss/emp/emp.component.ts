@@ -5,11 +5,13 @@ import { UserService } from '../../../services/user.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { globalAgent } from 'http';
+import { slideInFromRight } from '../../../shared/dialog-animations';
 
 @Component({
   selector: 'app-emp',
   templateUrl: './emp.component.html',
-  styleUrl: './emp.component.css'
+  styleUrl: './emp.component.css',
+ 
 })
 export class EmpComponent implements OnInit{
   empForm : any = FormGroup
@@ -26,6 +28,7 @@ export class EmpComponent implements OnInit{
     }
 
   ngOnInit(): void {
+    // document.body.classList.add('slide-in-from-left');
     this.empForm = this._formBuilder.group({
       name: [null,[Validators.required, Validators.pattern(globalProperties.nameRegx)]],
       department: [null,[Validators.required]],

@@ -1,5 +1,5 @@
 
-    <div class="bg-slate-50 p-8 rounded shadow-lg border-2 w-48 sm:w-96 -mt-2">
+    <div class="bg-slate-50 p-8 rounded shadow-lg border-2 w-48 sm:w-96 -mt-2 dialog-container">
         <div class="flex justify-center text-center mb-4 -mt-2">
             <img src="../../../assets/img/LOGO.png" class="h-16 w-18 ">
         </div>
@@ -18,7 +18,7 @@
         <div class="mb-3">
           <label for="department" class="block text-sm font-medium text-gray-600">Department</label>
           <mat-select formControlName="department" class="mt-1 p-2 w-full border rounded bg-white"> 
-                <mat-option  *ngFor = "let dept of data" [value]="dept.name" >{{dept.name}} - {{dept | json}}</mat-option>
+                <mat-option  *ngFor = "let dept of data" [value]="dept.name" >{{dept.name}} </mat-option>
             </mat-select>
           <mat-error *ngIf="empForm.controls.department.touched && empForm.controls.department.invalid" class="font-thin text-red-600 text-sm">
             <span *ngIf="empForm.controls.department.errors?.required">Department  is Required.</span>

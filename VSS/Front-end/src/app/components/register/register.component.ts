@@ -4,19 +4,26 @@ import { globalProperties } from '../../shared/globalProperties';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UserService } from '../../services/user.service';
 import { SnackbarService } from '../../services/snackbar.service';
-import { Router } from '@angular/router';
-
+import { NavigationEnd, Router } from '@angular/router';
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { fadeInRight } from 'ng-animate';
+// import { slideInFromLeft } from '../../shared/animations';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css'],
+  animations: [
+    trigger('fadeInRight', [transition(':enter', useAnimation(fadeInRight))]),
+  ],
 })
 export class RegisterComponent implements OnInit{
+  animationTrigger: boolean = false;
   registerForm : any = FormGroup
   responseMsg: any = ''
   data : any =[]
   constructor(
+    private router: Router,
     private _formBuilder: FormBuilder, 
     private _ngxService: NgxUiLoaderService,
     private _userService: UserService,

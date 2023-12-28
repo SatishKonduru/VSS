@@ -10,11 +10,13 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EmpComponent } from '../emp/emp.component';
 import { Router } from '@angular/router';
 import { ConfirmationComponent } from '../confirmation/confirmation.component';
+// import { slideInFromLeft } from '../../../shared/animations';
 
 @Component({
   selector: 'app-emp-mgmt',
   templateUrl: './emp-mgmt.component.html',
-  styleUrl: './emp-mgmt.component.css'
+  styleUrl: './emp-mgmt.component.css',
+  // animations: [slideInFromLeft]
 })
 export class EmpMgmtComponent implements OnInit{
   displayedColumns: string[] = ['name','department','task','progress','status','actions']
@@ -34,8 +36,11 @@ export class EmpMgmtComponent implements OnInit{
     ){}
 
     ngOnInit(): void { 
+      // document.body.classList.add('slide-in-from-left');
       this._ngxService.start()
       this.getEmployeeList()
+      
+  
     }
     getEmployeeList(){
       this._userService.getUsersList()
@@ -100,6 +105,7 @@ export class EmpMgmtComponent implements OnInit{
       dialogConfig.disableClose = true
       dialogConfig.autoFocus = true
       dialogConfig.position = {top: '10px'}
+      // dialogConfig.panelClass = 'slide-in-from-right';
       const dialogRef = this._userDialog.open(EmpComponent, dialogConfig)
       this._router.events.subscribe(()=>{dialogRef.close()})
       dialogRef.componentInstance.onEditEmp.subscribe((res: any) => {

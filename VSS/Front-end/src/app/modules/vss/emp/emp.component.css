@@ -1,0 +1,15 @@
+
+
+@keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  .dialog-container {
+    animation: slideInFromRight 0.5s ease-out;
+  }
+  
